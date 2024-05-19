@@ -25,12 +25,13 @@ void ms_proc_char(char c){
 	int i=0;
 	switch(c){
 		default:
-			printf("proc char: %c %02x\n",c,c);
+			//printf("proc char: %c %02x\n",c,c);
 			ms_ctx.line_buff[ms_ctx.index++] = c;
 			break;
 		case '\n':
-			printf("cmd rec: %s\n",ms_ctx.line_buff);
+		case '\r':
 			ms_ctx.line_buff[ms_ctx.index] = 0;
+			printf("cmd rec: %s\n",ms_ctx.line_buff);
 
 			// search for cmd
 			for(i=0;i<sizeof(ms_cmds)/sizeof(ms_cmds[0]);i++){
@@ -49,7 +50,8 @@ void ms_proc_char(char c){
 			ms_ctx.index = 0;
 			break;
 		case 8:
-			printf("backspace handling\n");
+		case 127:
+			//printf("backspace handling\n");
 			ms_ctx.index--;
 			break;
 	}

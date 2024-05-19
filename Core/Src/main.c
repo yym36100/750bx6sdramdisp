@@ -62,7 +62,13 @@ static void MX_USART1_UART_Init(void);
 uint8_t recbyte, sendbyte;
 
 void myprintf(char *text){
-	HAL_UART_Transmit_IT(&huart1, text, strlen(text));
+	HAL_UART_Transmit(&huart1, text, strlen(text),10);
+}
+
+int _write(int file, char *ptr, int len)
+{
+	HAL_UART_Transmit(&huart1, ptr, len,10);
+   return len;
 }
 
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
@@ -74,9 +80,11 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	sendbyte=recbyte;
-	if((sendbyte>=0x61)&&(sendbyte<=0x7a))sendbyte-=0x20;
-	HAL_UART_Transmit_IT(&huart1, &sendbyte,1);
+	//if((sendbyte>=0x61)&&(sendbyte<=0x7a))sendbyte-=0x20;
+	HAL_UART_Transmit(&huart1, &sendbyte,1,10);
 	HAL_UART_Receive_IT(&huart1, &recbyte, 1);
+
+	ms_proc_char(recbyte);
 }
 
 
@@ -125,7 +133,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  myprintf("Start\n");
+  printf("Start\n");
   HAL_UART_Receive_IT(&huart1, &recbyte, 1);
   while (1)
   {
