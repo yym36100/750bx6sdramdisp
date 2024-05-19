@@ -22,6 +22,14 @@ typedef struct ms_tcmd{
 	void (*func)(int argc, void* argv[]);	
 }ms_tcmd;
 
+#define ms_hist_size	(10)
+typedef struct  ms_tRingBuff {	
+	char items[ms_hist_size][32];
+	int rp, wp;
+}ms_tRingBuff;
+
+
+
 typedef struct ms_tctx{
 	int index;
 	char line_buff[255];
@@ -29,3 +37,9 @@ typedef struct ms_tctx{
 
 void ms_init(void);
 void ms_proc_char(char c);
+
+void ms_hist_init(void);
+
+void ms_hist_add(char *t);
+
+void ms_hist_show(void);

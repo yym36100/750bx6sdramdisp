@@ -15,6 +15,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	for(int i=0;i<strlen(test);i++){
 		ms_proc_char(test[i]);
 	}
+	ms_hist_show();
 	return 0;
 }
 
