@@ -59,9 +59,26 @@ static void MX_USART1_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+uint8_t recbyte, sendbyte;
+
 void myprintf(char *text){
 	HAL_UART_Transmit_IT(&huart1, text, strlen(text));
 }
+
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
+{
+	HAL_GPIO_TogglePin(LED_GPIO_Port,LED_Pin);
+
+}
+
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+	sendbyte=recbyte;
+	if((sendbyte>=0x61)&&(sendbyte<=0x7a))sendbyte-=0x20;
+	HAL_UART_Transmit_IT(&huart1, &sendbyte,1);
+	HAL_UART_Receive_IT(&huart1, &recbyte, 1);
+}
+
 
 /* USER CODE END 0 */
 
@@ -109,14 +126,15 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   myprintf("Start\n");
+  HAL_UART_Receive_IT(&huart1, &recbyte, 1);
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 	  HAL_GPIO_TogglePin(LED_GPIO_Port,LED_Pin);
-	  HAL_Delay(100);
-	  myprintf(".");
+	  HAL_Delay(250);
+	  //myprintf(".");
   }
   /* USER CODE END 3 */
 }
