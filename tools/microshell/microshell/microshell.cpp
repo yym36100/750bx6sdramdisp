@@ -8,7 +8,7 @@ extern "C"{
 #include "microshell.h"
 }
 
-char test[]="heli\x08p\ninfu\ninfo\n";
+char test[]="heli\x08p\ninfu\ninfo\nver\n";
 int _tmain(int argc, _TCHAR* argv[])
 {
 	ms_init();

@@ -1,5 +1,21 @@
 #pragma once
 
+
+#define MS_FONT_STYLE_RESET             "\x1B[0m"
+#define MS_FONT_STYLE_BOLD              "\x1B[1m"
+#define MS_FONT_STYLE_DISABLED          "\x1B[2m"
+#define MS_FONT_STYLE_ITALIC            "\x1B[3m"
+#define MS_FONT_STYLE_UNDERSCORE        "\x1B[4m"
+
+#define MS_FONT_COLOR_RED               "\x1B[31m"
+#define MS_FONT_COLOR_GREEN             "\x1B[32m"
+#define MS_FONT_COLOR_YELLOW            "\x1B[33m"
+#define MS_FONT_COLOR_BLUE              "\x1B[34m"
+#define MS_FONT_COLOR_MAGENTA           "\x1B[35m"
+#define MS_FONT_COLOR_CYAN              "\x1B[36m"
+#define MS_FONT_COLOR_WHITE             "\x1B[37m"
+
+
 typedef struct ms_tcmd{
 	char *name;
 	char *descr;

@@ -2,17 +2,20 @@
 
 
 void cmd_help(int argc, void* argv[]){
-	printf("cmd_help was called\n");
+	printf(MS_FONT_COLOR_GREEN"cmd_help was called"MS_FONT_COLOR_WHITE"\n");
 }
 
-ms_tcmd ms_cmds[] = {
-	{"info",
-	"nothing useful",
-	0},
+#define BUILD_DATE_TIME __DATE__ " " __TIME__
 
-	{"help",
-	"show this text",
-	cmd_help},
+void cmd_ver(int argc, void* argv[]){
+	printf("Build date and time: %s\n", BUILD_DATE_TIME);
+}
+
+
+ms_tcmd ms_cmds[] = {
+	{ "info", "nothing useful", 0 },
+	{ "help", "show this text", cmd_help },
+	{ "ver" , "built on: t"BUILD_DATE_TIME,cmd_ver },
 };
 
 ms_tctx ms_ctx;
@@ -40,7 +43,7 @@ void ms_proc_char(char c){
 					if(ms_cmds[i].func!=0){
 						ms_cmds[i].func(0,0);
 					} else {
-						printf("command exists but there is no function to call\n");
+						printf(MS_FONT_COLOR_RED"command exists but there is no function to call"MS_FONT_COLOR_WHITE"\n");
 					}
 					ms_ctx.index = 0;
 					return;
