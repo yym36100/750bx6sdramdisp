@@ -57,26 +57,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define cam_pwdn_Pin GPIO_PIN_13
-#define cam_pwdn_GPIO_Port GPIOH
-#define cam_swi2c_sda_Pin GPIO_PIN_9
-#define cam_swi2c_sda_GPIO_Port GPIOI
-#define led_Pin GPIO_PIN_13
-#define led_GPIO_Port GPIOC
-#define cam_swi2c_scl_Pin GPIO_PIN_8
-#define cam_swi2c_scl_GPIO_Port GPIOI
-#define touch_rst_Pin GPIO_PIN_10
-#define touch_rst_GPIO_Port GPIOI
-#define touch_int_Pin GPIO_PIN_11
-#define touch_int_GPIO_Port GPIOI
-#define touch_swi2c_sda_Pin GPIO_PIN_7
-#define touch_swi2c_sda_GPIO_Port GPIOG
-#define touch_swi2c_scl_Pin GPIO_PIN_3
-#define touch_swi2c_scl_GPIO_Port GPIOG
-#define spilcd_dc_Pin GPIO_PIN_11
-#define spilcd_dc_GPIO_Port GPIOJ
-#define spi_lcd_bl_Pin GPIO_PIN_6
-#define spi_lcd_bl_GPIO_Port GPIOH
+#define LED_Pin GPIO_PIN_13
+#define LED_GPIO_Port GPIOC
 
 /* USER CODE BEGIN Private defines */
 
